@@ -1,6 +1,9 @@
 # kintone CSV Uploader
 
-> CSV ファイルを kintone にアップロードする.
+![Node.js CI](https://github.com/mid0111/kintone-csv-uploader/workflows/Node.js%20CI/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/mid0111/kintone-csv-uploader/branch/master/graph/badge.svg)](https://codecov.io/gh/mid0111/kintone-csv-uploader)
+
+> CSV ファイルを kintone にアップロードする.  
 > CSV ファイルの先頭行をフィールドコードとして処理します。
 
 ## 使い方
