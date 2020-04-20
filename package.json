@@ -2,6 +2,7 @@
   "name": "kintone-csv-uploader",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
     "dev": "node --inspect-brk ./node_modules/.bin/jest --runInBand --watch",
     "test": "jest",
