@@ -1,10 +1,9 @@
-kintone CSV Uploader
-====
+# kintone CSV Uploader
 
-> Import data from csv file to kintone.
+> CSV ファイルを kintone にアップロードする.
 
-## Usage
+## 使い方
 
 ```bash
-npx kintone-csv-uploader --domain <サブドメイン>.cybozu.com --token <API token> --app <application id> --file <csv file>
+npx kintone-csv-uploader --config <config file> --file <csv file> [options]
 ```
