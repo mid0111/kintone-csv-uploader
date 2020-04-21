@@ -18,6 +18,12 @@ test('オプションをパースできること', async () => {
     filePath,
     '--encoding',
     'utf-8',
+    '--key',
+    'ID',
+    '--ignore',
+    'レコード番号',
+    '--ignore',
+    '郵便番号',
   ];
 
   const Config = require('../lib/Config');
@@ -27,6 +33,8 @@ test('オプションをパースできること', async () => {
   expect(config.appId).toBe(configJson.app);
   expect(config.filePath).toBe(filePath);
   expect(config.encoding).toBe('utf-8');
+  expect(config.key).toBe('ID');
+  expect(config.ignores).toEqual(['レコード番号', '郵便番号']);
 });
 
 test('必須オプションが指定されていない場合インスタンスが生成されないこと', async () => {
@@ -69,5 +77,7 @@ test('オプションが省略されている場合デフォルト値が設定�
   expect(config.token).toBe(configJson.token);
   expect(config.appId).toBe(configJson.app);
   expect(config.filePath).toBe(filePath);
-  expect(config.encoding).toBe('shift-jis');
+  expect(config.encoding).toBe('shift_jis');
+  expect(config.key).toBeFalsy();
+  expect(config.ignores).toEqual([]);
 });

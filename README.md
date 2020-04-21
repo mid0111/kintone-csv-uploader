@@ -36,7 +36,7 @@ kintone-csv-uploader --config sample.json --file <csv file> [options]
 キーが重複するレコードが存在する場合は、更新、存在しない場合は新規登録します。
 
 ```bash
-kintone-csv-uploader --config sample.json --file <csv file> [options] --key <重複禁止フィールドコード>
+kintone-csv-uploader --config sample.json --file <csv file> [options] --key <重複禁止フィールドコード> --ignore <除外するフィールドコード>
 ```
 
 ### その他オプション

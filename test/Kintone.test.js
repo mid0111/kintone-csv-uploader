@@ -284,3 +284,56 @@ test('リクエストでエラーが発生した場合異常終了すること',
     },
   });
 });
+
+test('除外指定されたカラム以外が登録されること', async () => {
+  const config = new Config(
+    {
+      file: filePath,
+      ignore: ['レコード番号', '住所'],
+    },
+    {
+      domain: subdomain,
+      token: token,
+      app: appId,
+    }
+  );
+
+  const inputCsvStr = `"レコード番号","社員番号","名前","住所"
+1,"a00001","山田太郎","東京都練馬区１−２−３"
+2,"a00002","田中花子","東京都足立区９−８−７"`;
+
+  axios.request.mockResolvedValue({});
+
+  await Kintone.uploadCsv(config, inputCsvStr);
+  // キーの存在チェックリクエストが呼ばれていないこと
+  expect(axios.get.mock.calls).toEqual([]);
+  // 新規登録リクエストが呼ばれていること、除外するカラムがリクエストに指定されていないこと
+  expect(axios.request.mock.calls[0][0]).toEqual({
+    method: 'post',
+    url: `https://${subdomain}/k/v1/records.json`,
+    data: {
+      app: appId,
+      records: [
+        {
+          名前: {
+            value: '山田太郎',
+          },
+          社員番号: {
+            value: 'a00001',
+          },
+        },
+        {
+          名前: {
+            value: '田中花子',
+          },
+          社員番号: {
+            value: 'a00002',
+          },
+        },
+      ],
+    },
+    headers: {
+      'X-Cybozu-API-Token': token,
+    },
+  });
+});
