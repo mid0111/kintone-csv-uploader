@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
+var iconv = require('iconv-lite');
+
 const Config = require('./lib/Config');
 const Kintone = require('./lib/Kintone');
 
@@ -11,7 +13,5 @@ if (!config) {
 
 Kintone.uploadCsv(
   config,
-  fs.readFileSync(config.filePath, {
-    encoding: config.encode,
-  })
+  iconv.decode(fs.readFileSync(config.filePath), config.encoding)
 );
